@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body{
+        overflow-x:hidden;
         margin: 0;
         padding: 0;
         h1{
