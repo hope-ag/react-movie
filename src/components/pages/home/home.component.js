@@ -8,7 +8,7 @@ import {
 // Components
 import HeroImage from './hero-image/hero.image.component';
 import Grid from '../../shared/movie-grid/movie-grid.component';
-import Thumbnail from './thumbnail/thumbnail.component';
+import Thumbnail from '../../shared/thumbnail/thumbnail.component';
 // Hooks
 import { useHomeFetch as useMovieFetch } from '../../../core/hooks/useHomeFetch';
 // images
@@ -42,7 +42,9 @@ function Home() {
         <Grid header={searchTerm ? 'Top Results' : 'Popular Movies'}>
           {movies.results.map((movie) => (
             <Thumbnail
+              shadow={true}
               key={movie.id}
+              hover
               clickable={true}
               movieId={movie.id}
               image={

@@ -9,15 +9,25 @@ import { noImage } from '../../../assets/images/no_image.jpg';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../core/configs/config';
 // Hooks
 import { useMovieFetch } from '../../../core/hooks/useMovieFetch';
+import Breadcrumb from './breadcrumb/breadcrumb.component';
+import Hero from './hero/hero.component';
+import { Text } from './hero/hero.styles';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const { details: movie, error, loading } = useMovieFetch(movieId);
   console.log(movie);
   console.log(movieId);
+  if (loading) {
+    return <Spinner />;
+  }
+  if (error) {
+    return <div>Something went wrong...</div>;
+  }
   return (
     <>
-      <div>Details</div>
+      <Breadcrumb movie={movie} />
+      <Hero movie={movie} />
     </>
   );
 };
