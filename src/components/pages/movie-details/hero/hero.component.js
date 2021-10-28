@@ -28,16 +28,22 @@ const Hero = ({ movie }) => {
             <h3>Plot</h3>
             <p>{movie.overview}</p>
             <div className='rating-directors'>
-              <div>
-                <h3>Rating</h3>
-                <div className='score'>{movie.vote_average}</div>
-                <h3>Director{movie.directors.length > 1 && 's'}</h3>
-                {movie.directors.map((director) => (
-                  <div key={director.credit_id} className='directors'>
-                    {director.name}
-                  </div>
-                ))}
-              </div>
+              <h3>Rating</h3>
+              <div className='score'>{movie.vote_average}</div>
+              <h3>Director{movie.directors.length > 1 && 's'}</h3>
+              {movie.directors.map((director) => (
+                <div key={director.credit_id} className='directors'>
+                  {director.name}
+                </div>
+              ))}
+              <h3>Genres</h3>
+              {movie.genres.map((genre, idx) => (
+                <span key={genre.id} className='genres'>
+                  {idx !== movie.genres.length - 1
+                    ? genre.name + ', '
+                    : genre.name}
+                </span>
+              ))}
             </div>
           </Text>
         </Content>

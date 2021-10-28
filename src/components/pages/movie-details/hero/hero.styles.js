@@ -28,7 +28,7 @@ export const Content = styled.div`
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   max-width: var(--max-width);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.65);
   border-radius: 20px;
   overflow: hidden;
   @media screen and (max-width: 768px) {
