@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import API from '../../core/configs/API';
+import { isPersistedInState, persistState } from '../helpers/helpers';
 
 const initialState = {
   page: 1,
@@ -39,9 +40,24 @@ export const useHomeFetch = () => {
   };
   // Initial render and search
   useEffect(() => {
-    setMovies(initialState);
-    fetchMovies(1, searchTerm);
+    if (!searchTerm) {
+      const sessionState = isPersistedInState(sessionStorage, 'movies');
+      if (sessionState) {
+        console.log('Fetching from state');
+        setMovies(sessionState);
+      } else {
+        setMovies(initialState);
+        console.log('Fetching from API');
+        fetchMovies(1, searchTerm);
+      }
+    }
   }, [searchTerm]);
+  // Write to session storage
+  useEffect(() => {
+    if (!searchTerm) {
+      persistState(sessionStorage, 'movies', movies);
+    }
+  }, [searchTerm, movies]);
 
   // Load More
   useEffect(() => {
